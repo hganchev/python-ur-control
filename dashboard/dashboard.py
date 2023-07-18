@@ -28,9 +28,12 @@ def _init_socket(self):
 function for send/receive to socket
 '''
 def send_receive_socket(self, dashboard_command:str) -> str:
+    global status
     try:
         self.dashboard_socket.send(dashboard_command)
-        return self.dashboard_socket.recv(1024)
+        received = self.dashboard_socket.recv(1024)
+        status = parse_status(self, received)
+        return received
     except:
         return None
     
