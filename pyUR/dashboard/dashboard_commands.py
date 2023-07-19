@@ -1,51 +1,107 @@
 class dashboard_commands:
-    program = 'MainProgram.urp'
-    installation = 'default.installation'
-        
+    def __init__(self):
+        pass
+    
     '''
-    commands for the dashboard server
-    :keys: command, value: command string
-    - load_program: load program to robot controller [program]
-    - load_installation: load installation to robot controller [installation]
+    command for loading program to robot controller
+    :param program: program name - MainProgram.urp
     '''
-    commands = {
-        "load_program": "load " + program,
-        "load_installation": "load installation " + installation,
-        "play_program": "play",
-        "stop_program": "stop",
-        "pause_program": "pause",
-        "quit_program": "quit",
-        "shutdown": "shutdown",
-        "running": "running",
-        "program_state": "programState",
-        "power_on": "power on",
-        "power_off": "power off",
-        "brake_release": "brake release",
-        "unlock_protective_stop": "unlock protective stop",
-        "safety_status": "safetystatus",
-        "robotmode": "robotmode",
-        "is_in_remote_control": "is in remote control",
-    }
-
-    status = {
-        "online": False,
-        "booting": False,
-        "powering_on": False,
-        "break_released": False,
-        "robot_is_ready": False,
-        "program_loaded": False,
-        "program_playing": False,
-        "program_paused": False,
-        "program_stopped": False,
-    } 
+    def load_program(self, program:str='MainProgram.urp') -> str:
+        return "load " + program + '\n'
+    
+    '''
+    command for loading program to robot controller
+    :param installation: installation name - default.installation
+    '''
+    def load_installation(self, installation:str='default.installation') -> str:
+        return "load installation " + installation + '\n'
+    
+    '''
+    command for playing program
+    '''
+    def play_program(self) -> str:
+        return "play" + '\n'
+    
+    '''
+    command for stopping program
+    '''
+    def stop_program(self) -> str:
+        return "stop" + '\n'
+    
+    '''
+    command for pausing program
+    '''
+    def pause_program(self) -> str:
+        return "pause" + '\n'
+    
+    '''
+    command for quitting program
+    '''
+    def quit_program(self) -> str:
+        return "quit" + '\n'
+    
+    '''
+    command for shutting down robot
+    '''
+    def shutdown(self) -> str:
+        return "shutdown" + '\n'
+    
+    '''
+    command for getting running status of robot
+    '''
+    def running(self) -> str:
+        return "running" + '\n'
+    
+    '''
+    command for getting program state of robot
+    '''
+    def program_state(self) -> str:
+        return "programState" + '\n'
+    
+    '''
+    command for powering on robot
+    '''
+    def power_on(self) -> str:
+        return "power on" + '\n'
+    
+    '''
+    command for powering off robot
+    '''
+    def power_off(self) -> str:
+        return "power off" + '\n'
+    
+    '''
+    command for releasing brake
+    '''
+    def brake_release(self) -> str:
+        return "brake release" + '\n'
+    
+    '''
+    command for unlocking protective stop
+    '''
+    def unlock_protective_stop(self) -> str:
+        return "unlock protective stop" + '\n'
+    
+    '''
+    command for getting safety status of robot
+    '''
+    def safety_status(self) -> str:
+        return "safetystatus" + '\n'
+    
+    '''
+    command for getting robot mode
+    '''
+    def robotmode(self) -> str:
+        return "robotmode" + '\n'
+    
+    '''
+    command for checking if robot is in remote control
+    '''
+    def is_in_remote_control(self) -> str:
+        return "is in remote control" + '\n'
 
     '''
     function for parsing status of the robot
     '''
-    def parse_status(self) -> dict:
-        global status
-        status = status.decode("utf-8").split(" ")
-        status_dict = {}
-        for i in range(0, len(status), 2):
-            status_dict[status[i]] = status[i+1]
-        return status_dict
+    def parse_status(self, received :str) -> str:
+        return None
