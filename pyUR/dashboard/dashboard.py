@@ -5,7 +5,7 @@ class dashboard:
     init
     :param host_ip: ip address of the robot
     '''
-    def __init__(self, host_ip):
+    def __init__(self, host_ip:str='127.0.0.1'):
         self.host = host_ip
         self.port = 29999
         self._init_socket()
