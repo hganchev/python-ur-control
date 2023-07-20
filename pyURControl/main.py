@@ -47,11 +47,24 @@ async def control(queue):
 get realtime status values
 '''
 async def get_realtime_status(queue):
+    last_prgstate = 0
+    last_rbtmode = 0
+
     while True:
         # Send get robot status command
         responce = realtime.receive_status()
         realtime_statuses.unpack(responce)
-        await queue.put(realtime_statuses.get_program_state())
+        prgstate = realtime_statuses.get_program_state()
+        rbtmode = realtime_statuses.get_robot_mode()
+
+        if prgstate != last_prgstate:
+            last_prgstate = prgstate
+            print('prg state:' + str(prgstate))
+        if rbtmode != last_rbtmode:
+            last_rbtmode = rbtmode
+            print('rbt mode:' + str(rbtmode))
+            
+        await queue.put(prgstate)
         await asyncio.sleep(1/500) # 500Hz = 1/500 = 0.002s = 2ms
         
 
