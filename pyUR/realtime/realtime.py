@@ -1,15 +1,40 @@
 import socket
 
-class realtime:
-    def __init__(self, host_ip:str='127.0.0.1'):
-        self.host = host_ip
-        self.port = 30003
-        self._init_socket()
+'private properties'
+_host : str = None
+_port : int = None
+_realtime_socket : socket = None
 
-    def _init_socket(self):
-        self.realtime_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.realtime_socket.connect((self.host, self.port))
+'''
+class for realtime comminucation to universal robot
+port 30003
+'''
+async def __init__():
+    pass
 
-    def send_and_receive(self, command:str) -> str:
-        self.realtime_socket.send(command.encode('utf-8'))
-        return self.realtime_socket.recv(4096).decode('utf-8')
+'''
+function for initialize socket
+:param host_ip: ip address of robot
+'''
+def init_socket(host_ip:str='127.0.0.1'):
+    global _host, _port, _realtime_socket
+    _host = host_ip
+    _port = 30003
+    _realtime_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    _realtime_socket.connect((_host, _port))
+
+'''
+send command to robot
+:param command: command to send
+'''
+def send(command:str):
+    global _realtime_socket
+    _realtime_socket.send(command.encode('utf-8'))
+
+'''
+receive status from robot
+'''
+def receive_status() -> bytearray:
+    global _realtime_socket
+    return _realtime_socket.recv(4096)
+    
