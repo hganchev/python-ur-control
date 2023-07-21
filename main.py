@@ -9,16 +9,6 @@ from operator import add
 make your program here
 '''
 def program():
-    p1 = [0.380, -0.200, 0.500, 3, 0.1, 0.7]
-    p2 = [0.480, -0.200, 0.500, 3, 0.1, 0.7]
-    p3 = [0.580, -0.200, 0.500, 3, 0.1, 0.7]
-
-    p3_offset_approach = [0.000, 0.000, -0.200, 0, 0, 0]
-    p3_offset_leave = [-0.200, 0.000, 0.000, 0, 0, 0]
-
-    t1 = 1
-    t2 = 1
-    t3 = 1
     # Init UR Control
     ur_control.init('192.168.157.128')
 
@@ -28,13 +18,34 @@ def program():
     # Send break release command
     ur_control.break_release()
 
-    # Send move joint with pose command
-    ur_control.move_joint_with_pose(p1, t=t1) # move to p1 for time t1
-    ur_control.move_joint_with_pose(p2, t=t2) # move to p2 for time t2
+    # Do pick and place
+    PickAndPlace()
+    
 
-    ur_control.move_joint_with_pose(list(map(add,p3,p3_offset_approach))) # move to p3 with offset for approach
-    ur_control.move_linear_pose(p3) # move to p3 with linear motion
-    ur_control.move_joint_with_pose(list(map(add,p3,p3_offset_leave))) # move to p3 with offset to leave
+def PickAndPlace():
+    # define positions
+    p1_home = [0.380, -0.200, 0.500, 3, 0.1, 0.7]
+
+    p2_pick = [0.580, -0.200, 0.500, 3, 0.1, 0.7]
+    p2_offset_approach = [-0.200, 0.000, 0.000, 0, 0, 0]
+    p2_offset_leave = [0.000, 0.000, 0.200, 0, 0, 0]
+
+    p3_place = [0.580, -0.700, 0.500, 3, 0.1, 0.7]
+    p3_offset_approach = [0.000, 0.000, 0.200, 0, 0, 0]
+    p3_offset_leave = [-0.200, 0.000, 0.000, 0, 0, 0]
+
+    # Pick 
+    ur_control.move_joint_with_pose(p1_home, a=1.4, v=1.05, t=0, r=0) # move to p1_home
+    ur_control.move_joint_with_pose(list(map(add,p2_pick,p2_offset_approach)), a=1.4, v=1.05, t=0, r=0) # move to p2_pick with offset for approach
+    ur_control.move_linear_pose(p2_pick, a=1.4, v=1.05, t=0, r=0) # move to p2_pick with linear motion
+    # pick the piece
+    ur_control.move_joint_with_pose(list(map(add,p2_pick,p2_offset_leave)), a=1.4, v=1.05, t=0, r=0) # move to p2_pick with offset to leave
+
+    # Place
+    ur_control.move_joint_with_pose(list(map(add,p3_place,p3_offset_approach)), a=1.4, v=1.05, t=0, r=0) # move to p3_place with offset for approach
+    ur_control.move_linear_pose(p3_place, a=1.4, v=1.05, t=0, r=0) # move to p3_place with linear motion
+    # place the piece
+    ur_control.move_joint_with_pose(list(map(add,p3_place,p3_offset_leave)), a=1.4, v=1.05, t=0, r=0) # move to p3_place with offset to leave
 
 
 if __name__ == '__main__':
