@@ -74,3 +74,11 @@ calculate translation of two poses
 '''
 def pose_translate(pose1:list=[0, 0, 0, 0, 0, 0], pose2:list=[0, 0, 0, 0, 0, 0]) -> str:
     return "pose_trans(p" + str(pose1) + ", p" + str(pose2) + ")"
+
+
+'''
+inverse pose 
+:param pose: pose position - [x, y, z, rx, ry, rz]
+'''
+def pose_inverse(pose:list=[0, 0, 0, 0, 0, 0]) -> str:
+    return "pose_inv(p" + str(pose) + ")"
