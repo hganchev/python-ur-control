@@ -58,3 +58,19 @@ calculate forward kinematics of robot joint
 '''
 def forward_kinematics(joint:list=[0, 0, 0, 0, 0, 0]) -> str:
     return "get_forward_kin(" + str(joint) + ")"
+
+'''
+calculate add two poses
+:param pose1: pose position - [x, y, z, rx, ry, rz]
+:param pose2: pose position - [x, y, z, rx, ry, rz]
+'''
+def pose_add(pose1:list=[0, 0, 0, 0, 0, 0], pose2:list=[0, 0, 0, 0, 0, 0]) -> str:
+    return "pose_add(p" + str(pose1) + ", p" + str(pose2) + ")"
+
+'''
+calculate translation of two poses
+:param pose1: pose position - [x, y, z, rx, ry, rz]
+:param pose2: pose position - [x, y, z, rx, ry, rz]
+'''
+def pose_translate(pose1:list=[0, 0, 0, 0, 0, 0], pose2:list=[0, 0, 0, 0, 0, 0]) -> str:
+    return "pose_trans(p" + str(pose1) + ", p" + str(pose2) + ")"
