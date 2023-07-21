@@ -4,10 +4,9 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 from pyUR.dashboard import dashboard, dashboard_commands
 from pyUR.realtime import realtime, realtime_commands, realtime_statuses
 from time import sleep
-import asyncio
 
 '''
-inut ur control by creating a thread
+init ur control by creating a thread
 '''
 def __init__():
    pass
@@ -41,47 +40,61 @@ def break_release():
 
 '''
 move joint with pose
+:param pose: pose to move to
+:param a: acceleration
+:param v: velocity
+:param t: time to move
+:param r: blend radius
 '''
-async def move_joint_with_pose(pose: list=[0, 0, 0, 0, 0, 0]):
-    realtime.send(realtime_commands.move_joint_with_pose(pose))
-    await robot_started_moving() == True 
-    await robot_done_moving() == True
+def move_joint_with_pose(pose: list=[0, 0, 0, 0, 0, 0], a: float=1.4, v: float=1.05, t: float=0, r: float=0):
+    realtime.send(realtime_commands.move_joint_with_pose(pose, a, v, t, r))
+    _wait_robot_move_done()
 
 '''
 move pose
+:param pose: pose to move to
+:param a: acceleration
+:param v: velocity
+:param t: time to move
+:param r: blend radius
 '''
-async def move_pose(pose: list=[0, 0, 0, 0, 0, 0]):
-    realtime.send(realtime_commands.move_pose(pose))
-    await robot_started_moving() == True 
-    await robot_done_moving() == True
-    
+def move_linear_pose(pose: list=[0, 0, 0, 0, 0, 0], a: float=1.4, v: float=1.05, t: float=0, r: float=0):
+    realtime.send(realtime_commands.move_linear_pose(pose, a, v, t, r))
+    _wait_robot_move_done()
+
+'''
+wait for robot to finish moving
+'''
+def _wait_robot_move_done():
+    _robot_started_moving()
+    _robot_done_moving()
 '''
 robot started moving
 '''
-async def robot_started_moving() -> bool:
+def _robot_started_moving():
     while True:
-        status = await get_program_state()
+        status = _get_program_state()
         if status != 1:
             break
-        await asyncio.sleep(0.001)
-    return True
+        sleep(0.001)
 
 '''
 robot done moving
 '''
-async def robot_done_moving() -> bool:
+def _robot_done_moving() -> bool:
     while True:
-        status = await get_program_state()
+        status = _get_program_state()
         if status == 1:
             break
-        await asyncio.sleep(0.001)
-    return True
+        sleep(0.001)
 
 '''
 get program state
+:1 - normal
+:2 - running
 '''
-async def get_program_state():
-    # Send get robot status command
+def _get_program_state():
+    # Receive responce
     responce = realtime.receive_status()
 
     # Unpack responce
@@ -89,6 +102,4 @@ async def get_program_state():
 
     # Get program state
     prgstate = realtime_statuses.get_program_state()
-    rbtmode = realtime_statuses.get_robot_mode()
-
     return prgstate

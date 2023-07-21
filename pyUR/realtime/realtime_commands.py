@@ -42,7 +42,7 @@ send move pose to robot
 :param t: time - 0
 :param r: radius - 0
 '''
-def move_pose(pose:list=[0, 0, 0, 0, 0, 0], a:float=1.4, v:float=1.05, t:float=0, r:float=0) -> str:
+def move_linear_pose(pose:list=[0, 0, 0, 0, 0, 0], a:float=1.4, v:float=1.05, t:float=0, r:float=0) -> str:
     return "movel(p" + str(pose) + ", a=" + str(a) + ", v=" + str(v) + ", t=" + str(t) + ", r=" + str(r) + ")" + '\n'
 
 '''
