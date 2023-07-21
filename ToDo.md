@@ -1,6 +1,8 @@
 # To do list
 * [] all the functions for the control 
-    - movej, movel
-    - Power on with waiting for Powering on
-    - break release with waiting for brake released
-* [] Pick and Place example
+    - ~~Realtime interface movej, movel~~
+    - pose add, pose trans + other...
+    - Dashboard commands with waiting the proper responces
+    - IO control
+    - RTDE?
+* [X] ~~Pick and Place example~~
