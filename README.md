@@ -2,6 +2,9 @@
 This is package for basic control of Universal Robots using inbuild intefaces
 like Dashboard, Realtime, RTDE.
 
+>:warning: **The package is in developement. It can have some bugs or missed functionalities.
+I am open for project ideas or cooperation to make it better. **
+
 ## Dashboard 
 Dashboard is a tcp/ip socket communication to port 29999 with functionalities like:
 - Loading program and installation to robot
