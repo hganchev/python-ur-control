@@ -1,8 +1,15 @@
 # To do list
-* [] all the functions for the control 
-    - ~~Realtime interface movej, movel~~
-    - pose add, pose trans + other...
-    - Dashboard commands with waiting the proper responces
-    - IO control
-    - RTDE?
-* [X] ~~Pick and Place example~~
+* [] Dashboard functions
+    - ~~servo on~~
+    - ~~break release~~
+    - other?
+* [] Realtime interface functions
+    - ~~movej, movel~~
+    - ~~pose add, pose trans, pose inverse~~
+    - digital io control
+    - servoing movement
+    - other?
+* [] RTDE?
+* [] Examples
+    - ~~pick and place~~
+    - more examples?
