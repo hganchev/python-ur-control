@@ -1,7 +1,7 @@
 import unittest
 from unittest import mock
-from pyUR.dashboard.dashboard import dashboard
-from pyUR.dashboard.dashboard_commands import dashboard_commands
+from pyUR.dashboard import dashboard
+from pyUR.dashboard import dashboard_commands
 
 class TestDashboard(unittest.TestCase):     
     def __init__(self, methodName: str = "runTest") -> None:
@@ -12,24 +12,26 @@ class TestDashboard(unittest.TestCase):
           
     def test_dashboard_init(self):
         # arrange
-        self.dashboard = dashboard("192.168.1.8")
+        dashboard.init_socket("192.168.157.128")
 
         # act
+        actual = dashboard.is_connected()
+        expected = True
 
         # assert
+        self.assertEqual(actual, expected)
 
     def test_send_receive_socket(self):
         # arrange
-        self.dashboard = dashboard("192.168.157.128")
-        mock_socket = mock.Mock()
-        mock_socket.connect.return_value = "Powering on"
+        dashboard.init_socket("192.168.157.128")
 
         # act
-        print("Sending power on command: " + dashboard_commands.commands["power_on"])
-        received = self.dashboard.send_receive_socket(dashboard_commands.commands["power_on"])
+        actual = dashboard.send_receive_socket(dashboard_commands.power_on())
+        print(actual)
+        expected = "Powering on\n"
 
         # assert
-        self.assertEqual(received, "Powering on")
+        self.assertEqual(actual, expected)
 
 
 if __name__ == '__main__':
