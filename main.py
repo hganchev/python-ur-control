@@ -1,6 +1,3 @@
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
 from pyURControl import ur_control
 from time import sleep
 from operator import add
@@ -37,7 +34,7 @@ def PickAndPlace():
     p2_offset_approach = [-0.200, 0.000, 0.000, 0, 0, 0]
     p2_offset_leave = [0.000, 0.000, 0.200, 0, 0, 0]
 
-    p3_place = [0.580, -0.700, 0.500, 3, 0.1, 0.7]
+    p3_place = [0.580, -0.500, 0.500, 3, 0.1, 0.7]
     p3_offset_approach = [0.000, 0.000, 0.200, 0, 0, 0]
     p3_offset_leave = [-0.200, 0.000, 0.000, 0, 0, 0]
 
