@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
-from src.pyURControl import ur_control
+from pyURControl import ur_control
 from time import sleep
 from operator import add
 
