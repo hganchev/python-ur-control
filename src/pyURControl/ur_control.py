@@ -39,6 +39,22 @@ def break_release():
     print(responce)
 
 '''
+set tcp
+:param tcp_offset: tcp offset
+'''
+def set_tcp(tcp_offset: list=[0, 0, 0, 0, 0, 0]):
+    realtime.send(realtime_commands.set_tcp(tcp_offset))
+
+'''
+set payload
+:param payload: payload in kg
+:param cog: center of gravity [CoGx, CoGy, CoGz]
+:param inertia: inertia [Ixx, Ixy, Ixz, Iyy, Iyz, Izz]
+'''
+def set_payload(payload: float=0, cog: list=[0, 0, 0], inertia: list=[0,0,0,0,0,0]):
+    realtime.send(realtime_commands.set_target_payload(payload, cog, inertia))
+
+'''
 move joint with pose
 :param pose: pose to move to
 :param a: acceleration

@@ -12,6 +12,15 @@ def set_tcp(tcp:list=[0, 0, 0, 0, 0, 0]) -> str:
     return "set_tcp(p" + str(tcp) + ")" + '\n'
 
 '''
+set payload of robot
+:param payload: payload in kg
+:param cog: center of gravity - [CoGx, CoGy, CoGz]
+:param inertia: inertia - [Ixx, Ixy, Ixz, Iyy, Iyz, Izz]
+'''
+def set_target_payload(payload:float=0, cog:list=[0, 0, 0], inertia:list=[0,0,0,0,0,0]) -> str:
+    return "set_target_payload(" + str(payload) + ", p" + str(cog) + "," + str(inertia) + ")" + '\n'
+
+'''
 send move joint to robot
 :param joint: joint position - [base, shoulder, elbow, wrist 1, wrist 2, wrist 3]
 :param a: acceleration - 1.4

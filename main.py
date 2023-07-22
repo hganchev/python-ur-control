@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "/..")
-from pyURControl import ur_control
+from src.pyURControl import ur_control
 from time import sleep
 from operator import add
 
@@ -23,6 +23,13 @@ def program():
     
 
 def PickAndPlace():
+    # set tcp
+    ur_control.set_tcp([0, 0, 0.1, 0, 0, 0])
+    sleep(0.3)
+
+    # set payload if there is any
+    ur_control.set_payload(0, [0, 0, 0], [0,0,0,0,0,0])
+
     # define positions
     p1_home = [0.380, -0.200, 0.500, 3, 0.1, 0.7]
 

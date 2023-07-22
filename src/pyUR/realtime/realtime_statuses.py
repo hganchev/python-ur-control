@@ -24,7 +24,7 @@ unpack status from robot
 :param status: status to unpack
 '''
 def unpack(data:bytes):
-    global _program_state, _robot_mode, _q_act_x,
+    global _program_state, _robot_mode, _q_act_x,\
     _q_act_y,_q_act_x,_q_act_rx,_q_act_ry,_q_act_rz
 
     packlen = (struct.unpack('!i', data[0:4]))[0]
@@ -57,6 +57,6 @@ def get_robot_mode():
     return _robot_mode
 
 def get_q_act_pose():
-    global _q_act_x, _q_act_y, _q_act_z,
+    global _q_act_x, _q_act_y, _q_act_z,\
     _q_act_rx, _q_act_ry, _q_act_rz
     return list[_q_act_x, _q_act_y, _q_act_z, _q_act_rx, _q_act_ry, _q_act_rz]
