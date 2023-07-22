@@ -42,13 +42,13 @@ def PickAndPlace():
     ur_control.move_joint_with_pose(p1_home, a=1.4, v=1.05, t=0, r=0) # move to p1_home
     ur_control.move_joint_with_pose(list(map(add,p2_pick,p2_offset_approach)), a=1.4, v=1.05, t=0, r=0) # move to p2_pick with offset for approach
     ur_control.move_linear_pose(p2_pick, a=1.4, v=1.05, t=0, r=0) # move to p2_pick with linear motion
-    # pick the piece
+    # pick the piece - close gripper
     ur_control.move_joint_with_pose(list(map(add,p2_pick,p2_offset_leave)), a=1.4, v=1.05, t=0, r=0) # move to p2_pick with offset to leave
 
     # Place
     ur_control.move_joint_with_pose(list(map(add,p3_place,p3_offset_approach)), a=1.4, v=1.05, t=0, r=0) # move to p3_place with offset for approach
     ur_control.move_linear_pose(p3_place, a=1.4, v=1.05, t=0, r=0) # move to p3_place with linear motion
-    # place the piece
+    # place the piece - open gripper
     ur_control.move_joint_with_pose(list(map(add,p3_place,p3_offset_leave)), a=1.4, v=1.05, t=0, r=0) # move to p3_place with offset to leave
 
 
