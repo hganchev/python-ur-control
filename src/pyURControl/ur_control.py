@@ -48,8 +48,8 @@ def set_tcp(tcp_offset: list=[0, 0, 0, 0, 0, 0]):
 '''
 set payload
 :param payload: payload in kg
-:param cog: center of gravity [CoGx, CoGy, CoGz]
-:param inertia: inertia [Ixx, Ixy, Ixz, Iyy, Iyz, Izz]
+:param cog: center of gravity [CoGx, CoGy, CoGz] specifying the offset (in meters) from the tool mount.
+:param inertia: inertia [Ixx, Ixy, Ixz, Iyy, Iyz, Izz]  - in kg*m^2 !can not be negative!
 '''
 def set_payload(payload: float=0, cog: list=[0, 0, 0], inertia: list=[0,0,0,0,0,0]):
     realtime.send(realtime_commands.set_target_payload(payload, cog, inertia))
