@@ -15,7 +15,7 @@
     - ~~joint move control~~
     - ~~pose move control~~
     - ~~set/get digital outputs~~
-    - servo control
+    - ~~servo control (power on, break release)~~
     - force control
     - other?
 * [] Examples
