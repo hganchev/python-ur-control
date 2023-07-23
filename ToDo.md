@@ -7,10 +7,17 @@
     - ~~movej, movel~~
     - ~~pose add, pose trans, pose inverse~~
     - ~~set tcp, set payload~~
-    - digital io control
+    - ~~digital outputs~~
     - servoing movement
     - other?
 * [] RTDE?
+* [] Control
+    - ~~joint move control~~
+    - ~~pose move control~~
+    - ~~set/get digital outputs~~
+    - servo control
+    - force control
+    - other?
 * [] Examples
     - ~~pick and place~~
     - more examples?

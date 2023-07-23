@@ -30,6 +30,19 @@ send power on command
 def power_on():
     responce = dashboard.send_receive_socket(dashboard_commands.power_on())
     print(responce)
+    if 'Powering on' in responce:
+        _wait_robot_powered_on()
+
+
+'''
+wait for robot to be powered on
+'''
+def _wait_robot_powered_on():
+    while True:
+        responce = dashboard.send_receive_socket(dashboard_commands.robotmode())
+        if 'Robotmode: IDLE' in responce:
+            break
+        sleep(0.001)
 
 '''
 send brake release command
@@ -37,7 +50,18 @@ send brake release command
 def break_release():
     responce = dashboard.send_receive_socket(dashboard_commands.brake_release())
     print(responce)
+    if 'Brake releasing' in responce:
+        _wait_robot_break_released()
 
+'''
+wait for robot break realeased
+'''
+def _wait_robot_break_released():
+    while True:
+        responce = dashboard.send_receive_socket(dashboard_commands.robotmode())
+        if 'Robotmode: RUNNING' in responce:
+            break
+        sleep(0.001)
 '''
 set tcp
 :param tcp_offset: tcp offset

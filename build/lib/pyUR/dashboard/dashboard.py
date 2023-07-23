@@ -41,9 +41,30 @@ function for send/receive to socket
 def send_receive_socket(dashboard_command:str) -> str:
     global _dashboard_socket
     try:
-        print(dashboard_command)
+        send_socket(dashboard_command)
+        return receive_socket()
+    except:
+        return None
+    
+'''
+function for send to socket
+:param dashboard_command: command to send to the robot
+'''
+def send_socket(dashboard_command:str) -> None:
+    global _dashboard_socket
+    try:
         _dashboard_socket.send(dashboard_command.encode('utf-8'))
+    except:
+        pass
+
+'''
+function for receive from socket
+'''
+def receive_socket() -> str:
+    global _dashboard_socket
+    try:
         return str(_dashboard_socket.recv(1024).decode('utf-8'))
     except:
         return None
+    
 
