@@ -21,8 +21,7 @@ def program():
 
 def PickAndPlace():
     # set tcp
-    ur_control.set_tcp([0, 0, 0.1, 0, 0, 0])
-    sleep(0.3)
+    ur_control.set_tcp([0, 0, 0.2, 0, 0, 0])
 
     # set payload if there is any
     ur_control.set_payload(0, [0, 0, 0], [0,0,0,0,0,0])
@@ -45,6 +44,7 @@ def PickAndPlace():
     # pick the piece - close gripper
     ur_control.set_digital_output(0, True)
     ur_control.set_digital_output(1, False)
+    ##
     ur_control.move_joint_with_pose(list(map(add,p2_pick,p2_offset_leave)), a=1.4, v=1.05, t=0, r=0) # move to p2_pick with offset to leave
 
     # Place
@@ -53,6 +53,7 @@ def PickAndPlace():
     # place the piece - open gripper
     ur_control.set_digital_output(0, False)
     ur_control.set_digital_output(1, True)
+    ##
     ur_control.move_joint_with_pose(list(map(add,p3_place,p3_offset_leave)), a=1.4, v=1.05, t=0, r=0) # move to p3_place with offset to leave
 
 

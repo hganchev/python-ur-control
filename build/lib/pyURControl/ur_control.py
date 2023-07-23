@@ -41,9 +41,11 @@ def break_release():
 '''
 set tcp
 :param tcp_offset: tcp offset
+:param delay: delay for command to be executed 0.3s by default
 '''
-def set_tcp(tcp_offset: list=[0, 0, 0, 0, 0, 0]):
+def set_tcp(tcp_offset: list=[0, 0, 0, 0, 0, 0], delay: float=0.3):
     realtime.send(realtime_commands.set_tcp(tcp_offset))
+    sleep(delay) # set sleep for command to be executed
 
 '''
 set payload
@@ -79,11 +81,21 @@ def move_linear_pose(pose: list=[0, 0, 0, 0, 0, 0], a: float=1.4, v: float=1.05,
     _wait_robot_move_done()
 
 '''
-wait for robot to finish moving
+get program state
+:1 - normal
+:2 - running
 '''
-def _wait_robot_move_done():
-    _robot_started_moving()
-    _robot_done_moving()
+def _get_program_state() -> float:
+    # Receive responce
+    responce = realtime.receive_status()
+
+    # Unpack responce
+    realtime_statuses.unpack(responce)
+
+    # Get program state
+    prgstate = realtime_statuses.get_program_state()
+    return prgstate
+
 '''
 robot started moving
 '''
@@ -105,20 +117,11 @@ def _robot_done_moving() -> bool:
         sleep(0.001)
 
 '''
-get program state
-:1 - normal
-:2 - running
+wait for robot to finish moving
 '''
-def _get_program_state():
-    # Receive responce
-    responce = realtime.receive_status()
-
-    # Unpack responce
-    realtime_statuses.unpack(responce)
-
-    # Get program state
-    prgstate = realtime_statuses.get_program_state()
-    return prgstate
+def _wait_robot_move_done():
+    _robot_started_moving()
+    _robot_done_moving()
 
 '''
 set digital output
@@ -126,5 +129,31 @@ set digital output
 :param value: output value
 '''
 def set_digital_output(output: int=0, value: bool=False):
-    print(realtime_commands.set_digital_output(output, value))
     realtime.send(realtime_commands.set_digital_output(output, value))
+    _wait_digital_output_is_set(output, value)
+
+'''
+get digital outputs
+'''
+def get_digital_outputs() -> list:
+    # Receive responce
+    responce = realtime.receive_status()
+
+    # Unpack responce
+    realtime_statuses.unpack(responce)
+
+    # Get program state
+    digital_outputs = realtime_statuses.get_digital_outputs()
+    return digital_outputs
+
+'''
+wait for digital output to be set
+:param output: output number 0-7
+:param value: output value
+'''
+def _wait_digital_output_is_set(output: int=0, value: bool=False):
+    while True:
+        digital_outputs = get_digital_outputs()
+        if digital_outputs[output] == value:
+            break
+        sleep(0.001)
