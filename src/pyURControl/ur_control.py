@@ -109,7 +109,7 @@ get program state
 :1 - normal
 :2 - running
 '''
-def _get_program_state():
+def _get_program_state() -> float:
     # Receive responce
     responce = realtime.receive_status()
 
@@ -119,3 +119,38 @@ def _get_program_state():
     # Get program state
     prgstate = realtime_statuses.get_program_state()
     return prgstate
+
+'''
+set digital output
+:param output: output number 0-7
+:param value: output value
+'''
+def set_digital_output(output: int=0, value: bool=False):
+    realtime.send(realtime_commands.set_digital_output(output, value))
+    _wait_digital_output_is_set(output, value)
+
+'''
+get digital outputs
+'''
+def get_digital_outputs() -> list:
+    # Receive responce
+    responce = realtime.receive_status()
+
+    # Unpack responce
+    realtime_statuses.unpack(responce)
+
+    # Get program state
+    digital_outputs = realtime_statuses.get_digital_outputs()
+    return digital_outputs
+
+'''
+wait for digital output to be set
+:param output: output number 0-7
+:param value: output value
+'''
+def _wait_digital_output_is_set(output: int=0, value: bool=False):
+    while True:
+        digital_outputs = get_digital_outputs()
+        if digital_outputs[output] == value:
+            break
+        sleep(0.001)

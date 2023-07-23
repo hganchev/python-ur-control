@@ -16,7 +16,7 @@ License-File: LICENSE.md
 
 # python-ur-control
 This is package for basic control of Universal Robots using inbuild intefaces
-like Dashboard, Realtime, RTDE.
+like Dashboard, Realtime, RTDE. link to UR documentation: https://www.universal-robots.com/articles/ur/interface-communication/overview-of-client-interfaces/
 
 >:warning: **The package is in developement. It can have some bugs or missed functionalities.
 I am open for project ideas or cooperation to make it better. **

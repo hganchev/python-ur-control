@@ -1,7 +1,6 @@
 import unittest
 from unittest import mock
-from pyUR.dashboard import dashboard
-from pyUR.dashboard import dashboard_commands
+from pyUR.dashboard import dashboard, dashboard_commands
 
 class TestDashboard(unittest.TestCase):     
     def __init__(self, methodName: str = "runTest") -> None:
