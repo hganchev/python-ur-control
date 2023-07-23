@@ -119,3 +119,12 @@ def _get_program_state():
     # Get program state
     prgstate = realtime_statuses.get_program_state()
     return prgstate
+
+'''
+set digital output
+:param output: output number 0-7
+:param value: output value
+'''
+def set_digital_output(output: int=0, value: bool=False):
+    print(realtime_commands.set_digital_output(output, value))
+    realtime.send(realtime_commands.set_digital_output(output, value))

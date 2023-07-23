@@ -91,3 +91,18 @@ inverse pose
 '''
 def pose_inverse(pose:list=[0, 0, 0, 0, 0, 0]) -> str:
     return "pose_inv(p" + str(pose) + ")"
+
+'''
+calculate sub pose of two poses
+:param pose1: pose position - [x, y, z, rx, ry, rz]
+:param pose2: pose position - [x, y, z, rx, ry, rz]
+'''
+def pose_sub(pose1:list=[0, 0, 0, 0, 0, 0], pose2:list=[0, 0, 0, 0, 0, 0]) -> str:
+    return "pose_sub(p" + str(pose1) + ", p" + str(pose2) + ")"
+
+'''
+set digital output
+:param output: output number - 0-7
+'''
+def set_digital_output(output:int=0, value:bool=False) -> str:
+    return "set_standard_digital_out(" + str(output) + ", " + str(value) +")" + '\n'
