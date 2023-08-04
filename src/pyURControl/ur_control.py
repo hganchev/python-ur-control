@@ -181,3 +181,31 @@ def _wait_digital_output_is_set(output: int=0, value: bool=False):
         if digital_outputs[output] == value:
             break
         sleep(0.001)
+
+'''
+get digital inputs
+'''
+def get_digital_inputs() -> list:
+    # Receive responce
+    responce = realtime.receive_status()
+
+    # Unpack responce
+    realtime_statuses.unpack(responce)
+
+    # Get program state
+    digital_inputs = realtime_statuses.get_digital_inputs()
+    return digital_inputs
+
+'''
+get digital input
+:param input: input number 0-7
+'''
+def get_digital_input(input: int=0) -> bool:
+    # Receive responce
+    responce = realtime.receive_status()
+
+    # Unpack responce
+    realtime_statuses.unpack(responce)
+    
+    digital_inputs = get_digital_inputs()
+    return digital_inputs[input]
