@@ -20,4 +20,5 @@
     - other?
 * [] Examples
     - ~~pick and place~~
+    - path following (generated from G-code) with force control
     - more examples?
