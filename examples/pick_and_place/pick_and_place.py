@@ -17,6 +17,12 @@ def program():
 
     # Do pick and place
     PickAndPlace()
+
+    # Read inputs - Test on UR-sim
+    # while True:
+    #     # read digital inputs
+    #     print("Inputs: ", ur_control.get_digital_inputs())
+    #     sleep(0.01)
     
 
 def PickAndPlace():

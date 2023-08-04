@@ -6,6 +6,7 @@ private properties
 _program_state : float = None
 _robot_mode : float = None
 _digital_outputs: list = None
+_digital_inputs : list = None
 
 _q_act_base:float = None
 _q_act_shoulder:float = None
@@ -33,7 +34,7 @@ unpack status from robot
 :param status: status to unpack
 '''
 def unpack(data:bytes):
-    global _program_state, _robot_mode,_digital_outputs,\
+    global _program_state, _robot_mode,_digital_outputs,_digital_inputs,\
     _q_act_base,_q_act_shoulder,_q_act_elbow,_q_act_wrist1,_q_act_wrist2,_q_act_wrist3,\
     _tool_act_x,_tool_act_y,_tool_act_z,_tool_act_rx,_tool_act_ry,_tool_act_rz
     
@@ -46,6 +47,9 @@ def unpack(data:bytes):
 
         # robot mode
         _robot_mode = (struct.unpack('!d', data[94*8:95*8]))[0]
+
+        # digital inputs
+        _digital_inputs = _double_to_8bit_list(struct.unpack('!d', data[85*8:86*8])[0])
 
         # digital outputs
         _digital_outputs = _double_to_8bit_list((struct.unpack('!d', data[130*8:131*8]))[0])
@@ -66,6 +70,9 @@ def unpack(data:bytes):
 
         # robot mode
         _robot_mode = (struct.unpack('!d', data[94*8:95*8]))[0]
+
+        # digital inputs
+        _digital_inputs = _double_to_8bit_list(struct.unpack('!d', data[85*8:86*8])[0])
 
         # digital outputs
         _digital_outputs = _double_to_8bit_list(struct.unpack('!d', data[130*8:131*8])[0])
@@ -102,6 +109,10 @@ def get_q_act_joint_positions():
 def get_digital_outputs():
     global _digital_outputs
     return _digital_outputs
+
+def get_digital_inputs():
+    global _digital_inputs
+    return _digital_inputs
 
 def get_robot_act_pose():
     global _tool_act_x, _tool_act_y, _tool_act_z, _tool_act_rx, _tool_act_ry, _tool_act_rz
