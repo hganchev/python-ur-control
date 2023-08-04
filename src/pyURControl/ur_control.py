@@ -40,7 +40,8 @@ wait for robot to be powered on
 def _wait_robot_powered_on():
     while True:
         responce = dashboard.send_receive_socket(dashboard_commands.robotmode())
-        if 'Robotmode: IDLE' in responce:
+        if 'Robotmode: IDLE' in responce or \
+        'Robotmode: RUNNING' in responce:
             break
         sleep(0.001)
 
