@@ -13,11 +13,11 @@ port 29999
 def __init__(self):
     pass
 
-'''
-function for initialize socket
-:param host_ip: ip address of robot
-'''
 def init_socket(host_ip:str='127.0.0.1'):
+    '''
+    function for initialize socket
+    :param host_ip: ip address of robot
+    '''
     global _host, _port, _dashboard_socket, _connected
     _host = host_ip
     _port = 29999
@@ -34,11 +34,11 @@ def is_connected() -> bool:
     global _connected
     return _connected
 
-'''
-function for send/receive to socket
-:param dashboard_command: command to send to the robot
-'''
 def send_receive_socket(dashboard_command:str) -> str:
+    '''
+    function for send/receive to socket
+    :param dashboard_command: command to send to the robot
+    '''
     global _dashboard_socket
     try:
         send_socket(dashboard_command)
@@ -46,21 +46,21 @@ def send_receive_socket(dashboard_command:str) -> str:
     except:
         return None
     
-'''
-function for send to socket
-:param dashboard_command: command to send to the robot
-'''
 def send_socket(dashboard_command:str) -> None:
+    '''
+    function for send to socket
+    :param dashboard_command: command to send to the robot
+    '''
     global _dashboard_socket
     try:
         _dashboard_socket.send(dashboard_command.encode('utf-8'))
     except:
         pass
 
-'''
-function for receive from socket
-'''
-def receive_socket() -> str:
+def receive_socket() -> str:  
+    '''
+    function for receive from socket
+    '''
     global _dashboard_socket
     try:
         return str(_dashboard_socket.recv(1024).decode('utf-8'))
