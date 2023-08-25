@@ -1,4 +1,7 @@
 # python-ur-control
+
+![GitHub all releases](https://img.shields.io/github/downloads/hganchev/python-ur-control/total)
+
 This is package for basic control of Universal Robots using inbuild intefaces
 like Dashboard, Realtime, RTDE. link to UR documentation: https://www.universal-robots.com/articles/ur/interface-communication/overview-of-client-interfaces/
 
@@ -21,3 +24,27 @@ Realtime interface is a tcp/ip socket communication to port 30003 with functiona
 It is using UR Script commands for controling the robot behavior. 
 
 ## RTDE - tbd?
+
+
+## Installation 
+```bash
+pip install -i https://test.pypi.org/simple/ pyURControl
+```
+
+## Usage
+```python
+from pyURControl import ur_control
+
+# Init UR Control 
+ur_control.init('RobotIPAdress')
+
+# Send power on command
+ur_control.power_on()
+
+# Send break release command
+ur_control.break_release()
+```
+
+# License 
+![GitHub(MIT)](https://img.shields.io/github/license/hganchev/python-ur-control)
+
