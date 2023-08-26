@@ -45,6 +45,13 @@ ur_control.power_on()
 ur_control.break_release()
 ```
 
+## Example
+After installation download the [example](https://github.com/hganchev/python-ur-control/blob/main/examples/pick_and_place/pick_and_place.py) file and connect it to the URSim Robot IP. 
+
+Then run the example:
+![](https://github.com/hganchev/python-ur-control/blob/main/examples/pick_and_place/example-pick-n-place.gif)
+
+
 # License 
 ![GitHub(MIT)](https://img.shields.io/github/license/hganchev/python-ur-control)
 
