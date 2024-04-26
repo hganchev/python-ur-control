@@ -29,11 +29,12 @@ Class for unpacking status from robot
 def __init__():
     pass
 
-'''
-unpack status from robot
-:param status: status to unpack
-'''
+
 def unpack(data:bytes):
+    '''
+    unpack status from robot
+    :param status: status to unpack
+    '''
     global _program_state, _robot_mode,_digital_outputs,_digital_inputs,\
     _q_act_base,_q_act_shoulder,_q_act_elbow,_q_act_wrist1,_q_act_wrist2,_q_act_wrist3,\
     _tool_act_x,_tool_act_y,_tool_act_z,_tool_act_rx,_tool_act_ry,_tool_act_rz

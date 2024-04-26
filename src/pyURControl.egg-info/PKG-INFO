@@ -11,10 +11,15 @@ Classifier: Programming Language :: Python :: 3.11
 Classifier: Operating System :: OS Independent
 Requires-Python: >=3.11
 Description-Content-Type: text/markdown
-Provides-Extra: dev
 License-File: LICENSE.md
+Provides-Extra: dev
+Requires-Dist: pytest>=7.4; extra == "dev"
+Requires-Dist: twine>=4.0.2; extra == "dev"
 
 # python-ur-control
+
+![GitHub all releases](https://img.shields.io/github/downloads/hganchev/python-ur-control/total)
+
 This is package for basic control of Universal Robots using inbuild intefaces
 like Dashboard, Realtime, RTDE. link to UR documentation: https://www.universal-robots.com/articles/ur/interface-communication/overview-of-client-interfaces/
 
@@ -37,3 +42,34 @@ Realtime interface is a tcp/ip socket communication to port 30003 with functiona
 It is using UR Script commands for controling the robot behavior. 
 
 ## RTDE - tbd?
+
+
+## Installation 
+```bash
+pip install -i https://test.pypi.org/simple/ pyURControl
+```
+
+## Usage
+```python
+from pyURControl import ur_control
+
+# Init UR Control 
+ur_control.init('RobotIPAdress')
+
+# Send power on command
+ur_control.power_on()
+
+# Send break release command
+ur_control.break_release()
+```
+
+## Example
+After installation download the [example](https://github.com/hganchev/python-ur-control/blob/main/examples/pick_and_place/pick_and_place.py) file and connect it to the URSim Robot IP. 
+
+Then run the example:
+![](https://github.com/hganchev/python-ur-control/blob/main/examples/pick_and_place/example-pick-n-place.gif)
+
+
+# License 
+![GitHub(MIT)](https://img.shields.io/github/license/hganchev/python-ur-control)
+

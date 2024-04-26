@@ -7,7 +7,7 @@ make your program here
 '''
 def program():
     # Init UR Control
-    ur_control.init('192.168.157.128')
+    ur_control.init('192.168.1.28')
 
     # Send power on command
     ur_control.power_on()
