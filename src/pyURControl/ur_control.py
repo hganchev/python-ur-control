@@ -209,3 +209,69 @@ def get_digital_input(input: int=0) -> bool:
     
     digital_inputs = get_digital_inputs()
     return digital_inputs[input]
+
+def create_pallet(rows: int, cols: int, corner1: list, corner2: list, corner3: list) -> list:
+    '''
+    create pallet
+    :param rows: number of rows
+    :param cols: number of columns
+    :param corner1: first corner point of the pallet
+    :param corner2: second corner point of the pallet
+    :param corner3: third corner point of the pallet
+    :return: list of pallet positions
+    '''
+    pallet = []
+    for i in range(rows):
+        for j in range(cols):
+            x = corner1[0] + i * (corner2[0] - corner1[0]) / (rows - 1) + j * (corner3[0] - corner1[0]) / (cols - 1)
+            y = corner1[1] + i * (corner2[1] - corner1[1]) / (rows - 1) + j * (corner3[1] - corner1[1]) / (cols - 1)
+            z = corner1[2] + i * (corner2[2] - corner1[2]) / (rows - 1) + j * (corner3[2] - corner1[2]) / (cols - 1)
+            pallet.append([x, y, z, corner1[3], corner1[4], corner1[5]])
+    return pallet
+
+def go_to_pallet_position(pallet: list, row: int, col: int, a: float=1.4, v: float=1.05, t: float=0, r: float=0):
+    '''
+    go to pallet position
+    :param pallet: list of pallet positions
+    :param row: row index
+    :param col: column index
+    :param a: acceleration
+    :param v: velocity
+    :param t: time to move
+    :param r: blend radius
+    '''
+    pose = pallet[row * len(pallet[0]) + col]
+    move_joint_with_pose(pose, a, v, t, r)
+
+def go_to_pallet_position_with_offset(pallet: list, row: int, col: int, offset: list, a: float=1.4, v: float=1.05, t: float=0, r: float=0):
+    '''
+    go to pallet position with offset
+    :param pallet: list of pallet positions
+    :param row: row index
+    :param col: column index
+    :param offset: offset to apply to the position
+    :param a: acceleration
+    :param v: velocity
+    :param t: time to move
+    :param r: blend radius
+    '''
+    pose = pallet[row * len(pallet[0]) + col]
+    pose_with_offset = [pose[i] + offset[i] for i in range(len(pose))]
+    move_joint_with_pose(pose_with_offset, a, v, t, r)
+
+__all__ = [
+    'init',
+    'power_on',
+    'break_release',
+    'set_tcp',
+    'set_payload',
+    'move_joint_with_pose',
+    'move_linear_pose',
+    'set_digital_output',
+    'get_digital_outputs',
+    'get_digital_inputs',
+    'get_digital_input',
+    'create_pallet',
+    'go_to_pallet_position',
+    'go_to_pallet_position_with_offset'
+]
