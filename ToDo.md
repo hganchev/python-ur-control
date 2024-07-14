@@ -1,24 +1,26 @@
 # To do list
-* [] Dashboard functions
+- [ ] Dashboard functions
     - ~~servo on~~
     - ~~break release~~
     - other?
-* [] Realtime interface functions
+- [ ] Realtime interface functions
     - ~~movej, movel~~
     - ~~pose add, pose trans, pose inverse~~
     - ~~set tcp, set payload~~
     - ~~digital outputs~~
     - servoing movement
     - other?
-* [] RTDE?
-* [] Control
+- [ ] RTDE?
+- [ ] Control
     - ~~joint move control~~
     - ~~pose move control~~
     - ~~set/get digital outputs~~
     - ~~servo control (power on, break release)~~
     - force control
+    - palletization
     - other?
-* [] Examples
+- [ ] Examples
     - ~~pick and place~~
+    - palletization
     - path following (generated from G-code) with force control
     - more examples?
