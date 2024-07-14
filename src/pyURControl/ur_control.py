@@ -226,36 +226,37 @@ def create_pallet(rows: int, cols: int, corner1: list, corner2: list, corner3: l
             x = corner1[0] + i * (corner2[0] - corner1[0]) / (rows - 1) + j * (corner3[0] - corner1[0]) / (cols - 1)
             y = corner1[1] + i * (corner2[1] - corner1[1]) / (rows - 1) + j * (corner3[1] - corner1[1]) / (cols - 1)
             z = corner1[2] + i * (corner2[2] - corner1[2]) / (rows - 1) + j * (corner3[2] - corner1[2]) / (cols - 1)
-            pallet.append([x, y, z, corner1[3], corner1[4], corner1[5]])
+            rx = corner1[3] + i * (corner2[3] - corner1[3]) / (rows - 1) + j * (corner3[3] - corner1[3]) / (cols - 1)
+            ry = corner1[4] + i * (corner2[4] - corner1[4]) / (rows - 1) + j * (corner3[4] - corner1[4]) / (cols - 1)
+            rz = corner1[5] + i * (corner2[5] - corner1[5]) / (rows - 1) + j * (corner3[5] - corner1[5]) / (cols - 1)
+            pallet.append([x, y, z, rx, ry, rz])
     return pallet
 
-def go_to_pallet_position(pallet: list, row: int, col: int, a: float=1.4, v: float=1.05, t: float=0, r: float=0):
+def go_to_pallet_position(pallet: list, pos: int, a: float=1.4, v: float=1.05, t: float=0, r: float=0):
     '''
     go to pallet position
     :param pallet: list of pallet positions
-    :param row: row index
-    :param col: column index
+    :pos: position index (starting from 1)
     :param a: acceleration
     :param v: velocity
     :param t: time to move
     :param r: blend radius
     '''
-    pose = pallet[row * len(pallet[0]) + col]
+    pose = pallet[pos - 1]
     move_joint_with_pose(pose, a, v, t, r)
 
-def go_to_pallet_position_with_offset(pallet: list, row: int, col: int, offset: list, a: float=1.4, v: float=1.05, t: float=0, r: float=0):
+def go_to_pallet_position_with_offset(pallet: list, pos: int, offset: list, a: float=1.4, v: float=1.05, t: float=0, r: float=0):
     '''
     go to pallet position with offset
     :param pallet: list of pallet positions
-    :param row: row index
-    :param col: column index
+    :pos: position index (starting from 1)
     :param offset: offset to apply to the position
     :param a: acceleration
     :param v: velocity
     :param t: time to move
     :param r: blend radius
     '''
-    pose = pallet[row * len(pallet[0]) + col]
+    pose = pallet[pos  - 1]
     pose_with_offset = [pose[i] + offset[i] for i in range(len(pose))]
     move_joint_with_pose(pose_with_offset, a, v, t, r)
 
