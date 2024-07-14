@@ -4,6 +4,7 @@ from operator import add
 
 '''
 make your program here
+to Install pyURControl localy, run the following command: pip install -e .
 '''
 def program():
     # Init UR Control

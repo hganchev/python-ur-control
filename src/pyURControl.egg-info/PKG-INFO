@@ -46,7 +46,7 @@ It is using UR Script commands for controling the robot behavior.
 
 ## Installation 
 ```bash
-pip install -i https://test.pypi.org/simple/ pyURControl
+pip install -i https://test.pypi.org/simple/pyURControl
 ```
 
 ## Usage
