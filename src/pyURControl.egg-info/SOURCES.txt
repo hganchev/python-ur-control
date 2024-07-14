@@ -17,3 +17,6 @@ src/pyUR/realtime/__init__.py
 src/pyUR/realtime/realtime.py
 src/pyUR/realtime/realtime_commands.py
 src/pyUR/realtime/realtime_statuses.py
+tests/test_dashboard.py
+tests/test_realtime.py
+tests/test_ur_control.py
