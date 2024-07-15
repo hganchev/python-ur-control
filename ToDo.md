@@ -17,10 +17,10 @@
     - ~~set/get digital outputs~~
     - ~~servo control (power on, break release)~~
     - force control
-    - palletization
+    - ~~palletization~~
     - other?
 - [ ] Examples
     - ~~pick and place~~
-    - palletization
+    - ~~palletization~~
     - path following (generated from G-code) with force control
     - more examples?

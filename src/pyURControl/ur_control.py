@@ -223,12 +223,12 @@ def create_pallet(rows: int, cols: int, corner1: list, corner2: list, corner3: l
     pallet = []
     for i in range(rows):
         for j in range(cols):
-            x = corner1[0] + i * (corner2[0] - corner1[0]) / (rows - 1) + j * (corner3[0] - corner1[0]) / (cols - 1)
-            y = corner1[1] + i * (corner2[1] - corner1[1]) / (rows - 1) + j * (corner3[1] - corner1[1]) / (cols - 1)
-            z = corner1[2] + i * (corner2[2] - corner1[2]) / (rows - 1) + j * (corner3[2] - corner1[2]) / (cols - 1)
-            rx = corner1[3] + i * (corner2[3] - corner1[3]) / (rows - 1) + j * (corner3[3] - corner1[3]) / (cols - 1)
-            ry = corner1[4] + i * (corner2[4] - corner1[4]) / (rows - 1) + j * (corner3[4] - corner1[4]) / (cols - 1)
-            rz = corner1[5] + i * (corner2[5] - corner1[5]) / (rows - 1) + j * (corner3[5] - corner1[5]) / (cols - 1)
+            x = corner1[0] + i * (corner3[0] - corner1[0]) / (rows - 1) + j * (corner2[0] - corner1[0]) / (cols - 1)
+            y = corner1[1] + i * (corner3[1] - corner1[1]) / (rows - 1) + j * (corner2[1] - corner1[1]) / (cols - 1)
+            z = corner1[2] + i * (corner3[2] - corner1[2]) / (rows - 1) + j * (corner2[2] - corner1[2]) / (cols - 1)
+            rx = corner1[3] + i * (corner3[3] - corner1[3]) / (rows - 1) + j * (corner2[3] - corner1[3]) / (cols - 1)
+            ry = corner1[4] + i * (corner3[4] - corner1[4]) / (rows - 1) + j * (corner2[4] - corner1[4]) / (cols - 1)
+            rz = corner1[5] + i * (corner3[5] - corner1[5]) / (rows - 1) + j * (corner2[5] - corner1[5]) / (cols - 1)
             pallet.append([x, y, z, rx, ry, rz])
     return pallet
 

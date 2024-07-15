@@ -34,16 +34,16 @@ def Palletization():
     # set payload if there is any
     ur_control.set_payload(0, [0, 0, 0], [0,0,0,0,0,0])
 
-    # move to pallet position 1
-    ur_control.go_to_pallet_position(pallet1, 1)
-
-    # move to pallet position 2
-    ur_control.go_to_pallet_position(pallet1, 2)
-
-    # move to pallet position 2
-    ur_control.go_to_pallet_position(pallet1, 100)
+    # go to pallet position
+    for i in range(99):
+        ur_control.go_to_pallet_position_with_offset(pallet1, i + 1, [0, 0, 0.2, 0 ,0, 0]) # approach
+        ur_control.go_to_pallet_position(pallet1, i + 1)
+        ur_control.go_to_pallet_position_with_offset(pallet1, i + 1, [0, 0, 0.2, 0 ,0, 0]) # leave
+        sleep(1)
 
 
 if __name__ == '__main__':
     program()
+
+
 
