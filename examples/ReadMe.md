@@ -16,12 +16,12 @@ The `pick_and_place.py` script can be customized to fit specific picking and pla
 
 ## Palletization Example
 
-The code you provided appears to be a function named Palletization() that performs a series of actions related to palletization. Let's break down the logic step by step:
+The code you provided appears to be a function named `Palletization()` that performs a series of actions related to palletization. Let's break down the logic step by step:
 
-1. Create a pallet: The code defines three corners of a pallet using coordinate values. Then, it calls a function ur_control.create_pallet() to create a pallet with 10 rows and 10 columns, using the specified corner coordinates.
+1. Create a pallet: The code defines three corners of a pallet using coordinate values. Then, it calls a function `ur_control.create_pallet()` to create a pallet with 10 rows and 10 columns, using the specified corner coordinates.
 
-2. Set the tool center point (TCP): The code calls ur_control.set_tcp() function to set the tool center point to [0, 0, 0.2, 0, 0, 0]. The TCP is the reference point on the robot's end effector where the tool or gripper is attached.
+2. Set the tool center point (TCP): The code calls `ur_control.set_tcp()` function to set the tool center point to `[0, 0, 0.2, 0, 0, 0]`. The TCP is the reference point on the robot's end effector where the tool or gripper is attached.
 
-3. Set the payload: The code calls ur_control.set_payload() function to set the payload of the robot. In this case, the payload is set to 0 kg, with the center of gravity at [0, 0, 0] and the inertia matrix [0, 0, 0, 0, 0, 0].
+3. Set the payload: The code calls `ur_control.set_payload()` function to set the payload of the robot. In this case, the payload is set to 0 kg, with the center of gravity at [0, 0, 0] and the inertia matrix [0, 0, 0, 0, 0, 0].
 
 4. Go to pallet position: The code enters a loop that iterates 99 times. In each iteration, it performs the following actions:
